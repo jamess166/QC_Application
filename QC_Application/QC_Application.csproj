@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{EBC864C8-760A-44EB-9FE8-D72C721EE83A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QC_Application</RootNamespace>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files\Autodesk\Revit 2021\Revit.exe</StartProgram>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Program Files\Autodesk\Revit 2021\Revit.exe</StartProgram>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RestSharp, Version=106.4.2.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RevitAPI">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controller\AppMain.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QCApp.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EntitlementRevit.cs" />
+    <Compile Include="Utils\Common\AvailabilityButtons.cs" />
+    <Compile Include="Utils\Common\CommonAssemblyInfo.cs" />
+    <Compile Include="Utils\Common\CreatePushButtons.cs" />
+    <Compile Include="Utils\Common\ImageUti.cs" />
+    <Compile Include="Utils\Common\InterfaceRibbon.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="QC_Application.addin" />
+    <None Include="PackageContents.xml" />
+    <None Include="RestSharp.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterClean">
+    <Delete Files="$(ProgramData)\Autodesk\Revit\Addins\2021\TemplateRevitCS.addin" />
+  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>mkdir "$(ProgramData)\Autodesk\ApplicationPlugins\QC_Application.bundle"
+mkdir "$(ProgramData)\Autodesk\ApplicationPlugins\QC_Application.bundle\Contents"
+copy "$(ProjectDir)QC_Application.addin" "$(ProgramData)\Autodesk\ApplicationPlugins\QC_Application.bundle\Contents\QC_Application.addin"
+copy "$(ProjectDir)PackageContents.xml" "$(ProgramData)\Autodesk\ApplicationPlugins\QC_Application.bundle\PackageContents.xml"
+copy "$(ProjectDir)RestSharp.dll" "$(ProgramData)\Autodesk\ApplicationPlugins\QC_Application.bundle\Contents\RestSharp.dll"
+copy "$(TargetDir)QC_Application.dll" "$(ProgramData)\Autodesk\ApplicationPlugins\QC_Application.bundle\Contents\QC_Application.dll"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    None
+  </ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+  </PropertyGroup>
+</Project>

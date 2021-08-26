@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Aplicacion QC_Application</Name>
+    <Assembly>QC_Application.dll</Assembly>
+    <ClientId>ebc864c8-760a-44eb-9fe8-d72c721ee83a</ClientId>
+    <FullClassName>QC_Application.QCApp</FullClassName>
+    <VendorId>QCApp</VendorId>
+  </AddIn>
+</RevitAddIns>
