@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>Aplicacion QC_Mark</Name>
+		<Assembly>QC_Mark.dll</Assembly>
+		<ClientId>ef746ff2-26dc-49a9-9aa6-b44e9b32cbca</ClientId>
+		<FullClassName>QC_Mark.QCApp</FullClassName>
+		<VendorId>QC Ingenieros</VendorId>
+	</AddIn>
+</RevitAddIns>
